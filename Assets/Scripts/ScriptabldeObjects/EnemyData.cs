@@ -14,9 +14,14 @@ public class EnemyData : ScriptableObject
 	[SerializeField]
 	private GameObject model;
 	[SerializeField]
-	private float scale;
+	private float scale = 1;
+	[SerializeField]
+	private float switchDist = 1;
 
 	public int StartHealth { get => startHealth; }
 	public float Speed { get => speed; }
 	public int Damage { get => damage; }
+	public GameObject Model { get => model; }
+	public float Scale { get => scale; }
+	public float SwitchDist { get => switchDist; }
 }

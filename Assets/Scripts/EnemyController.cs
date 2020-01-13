@@ -4,15 +4,42 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	[SerializeField]
+	private EnemyData enemyData;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private Transform trans;
+	private Transform movepoints;
+	private int currHealth;
+
+	public EnemyData EnemyData { set => enemyData = value; }
+
+
+	// Start is called before the first frame update
+	void Start()
+	{
+		trans = this.transform;
+		Instantiate(enemyData.Model, trans);
+		movepoints = GameController.Instance.MovePoints;
+		currHealth = enemyData.StartHealth;
+
+		if (enemyData == null)
+			Debug.LogWarning("No enemyData in" + this.trans.name);
+		StartCoroutine(Movement());
+	}
+
+	IEnumerator Movement()
+	{
+		foreach (Transform currentPoint in movepoints)
+		{
+			while (Vector3.Distance(trans.position, currentPoint.position) > enemyData.SwitchDist)
+			{
+				Vector3 tmp = Vector3.MoveTowards(trans.position, currentPoint.position, enemyData.Speed * Time.deltaTime);
+				tmp.y = trans.position.y;
+				trans.position = tmp;
+				yield return null;
+			}
+		}
+		//PlayerCastleGetDamageHere();
+		Destroy(trans.gameObject);
+	}
 }

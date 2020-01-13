@@ -37,4 +37,9 @@ public class GameController : MonoBehaviour
 		goldText.text = gold.ToString();
 		return true;
 	}
+
+	public void PrintShit()
+	{
+		print("shit");
+	}
 }

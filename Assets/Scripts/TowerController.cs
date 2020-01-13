@@ -27,6 +27,7 @@ public class TowerController : MonoBehaviour
 			int id = 0;
 			for (int i = 0; i < GameController.Instance.Enemies.childCount; i++)
 			{
+				//closest to the player castle.
 				float tmpDist = Vector3.Distance(GameController.Instance.Enemies.GetChild(i).position, GameController.Instance.Castle.position);
 				if (tmpDist < dist)
 				{

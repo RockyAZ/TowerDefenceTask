@@ -15,8 +15,10 @@ public class EnemyController : MonoBehaviour
 
 
 	// Start is called before the first frame update
-	void Start()
+	void Awake()
 	{
+		print("ss: " + enemyData.StartHealth);
+
 		trans = this.transform;
 		Instantiate(enemyData.Model, trans);
 		movepoints = GameController.Instance.MovePoints;
@@ -41,5 +43,17 @@ public class EnemyController : MonoBehaviour
 		}
 		//PlayerCastleGetDamageHere();
 		Destroy(trans.gameObject);
+	}
+
+	public void GetDamage(int dmg)
+	{
+		currHealth -= dmg;
+		if (currHealth <= 0)
+			Death();
+	}
+
+	private void Death()
+	{
+		Destroy(this.gameObject);
 	}
 }

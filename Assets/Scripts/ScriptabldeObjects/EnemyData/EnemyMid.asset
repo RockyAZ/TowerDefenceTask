@@ -16,4 +16,5 @@ MonoBehaviour:
   speed: 5
   damage: 6
   model: {fileID: -927199367670048503, guid: 6999b6f17f4399948a02b22d8c20c353, type: 3}
-  scale: 2
+  scale: 1
+  switchDist: 1

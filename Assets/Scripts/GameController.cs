@@ -10,8 +10,12 @@ public class GameController : MonoBehaviour
 	private Transform movePoints;
 	[SerializeField]
 	private Transform enemies;
+	[SerializeField]
+	private Transform castle;
+
 	public Transform MovePoints { get => movePoints; }
-	public Transform Enemies { get => Enemies; set => Enemies = value; }
+	public Transform Enemies { get => enemies; }
+	public Transform Castle { get => castle; }
 
 	private void Awake()
 	{

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class TowerController : MonoBehaviour
 {
+	[SerializeField]
+	private TowerData towerData;
+
 	private Transform trans;
 	private LineRenderer line;
 
@@ -12,39 +15,42 @@ public class TowerController : MonoBehaviour
 	{
 		trans = this.transform;
 		line = this.GetComponent<LineRenderer>();
+		Instantiate(towerData.Model, trans);
 		StartCoroutine(Attack());
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
 	}
 
 	IEnumerator Attack()
 	{
 		while (true)
 		{
+			List<Transform> inRange = new List<Transform>();
 			float dist = Mathf.Infinity;
-			int id = 0;
+			int id = -1;
+
+			//find all enemies in tower attack range
 			for (int i = 0; i < GameController.Instance.Enemies.childCount; i++)
+				if (Vector3.Distance(trans.position, GameController.Instance.Enemies.GetChild(i).position) <= towerData.Range)
+					inRange.Add(GameController.Instance.Enemies.GetChild(i));
+
+			//find closest enemy to the player castle.
+			for (int i = 0; i < inRange.Count; i++)
 			{
-				//closest enemy to the player castle.
-				float tmpDist = Vector3.Distance(GameController.Instance.Enemies.GetChild(i).position, GameController.Instance.Castle.position);
+				float tmpDist = Vector3.Distance(inRange[i].position, GameController.Instance.Castle.position);
 				if (tmpDist < dist)
 				{
 					dist = tmpDist;
 					id = i;
 				}
 			}
-			//new distance between this tower and chosen enemy
-			dist = Vector3.Distance(trans.position, GameController.Instance.Enemies.GetChild(id).position);
-			Transform enemy = GameController.Instance.Enemies.GetChild(id);
-			if (dist < 10)
+
+			//do action with enemy if found
+			if (id >= 0)
 			{
+				Transform enemy = inRange[id];
 				trans.LookAt(enemy, Vector3.up);
 				enemy.GetComponent<EnemyController>().GetDamage(1);
 				StartCoroutine(DrawLine(enemy.position));
-				yield return new WaitForSeconds(0.5f);
+				yield return new WaitForSeconds(towerData.Interval);
 			}
 			yield return null;
 		}

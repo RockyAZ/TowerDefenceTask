@@ -11,30 +11,22 @@ public class EnemyController : MonoBehaviour
 	private Transform movepoints;
 	private int currHealth;
 
-	public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
+	public EnemyData EnemyData { get => enemyData; }
 
 	// Start is called before the first frame update
 	void Awake()
 	{
-		print("ss: " + enemyData.StartHealth);
-
 		trans = this.transform;
-
-		GameObject tmp = Instantiate(enemyData.Model, trans);
-		print("type_" + EnemyData.Type);
-		print("scale_" + EnemyData.Scale);
-		print("before_scale_" + tmp.transform.localScale);
-		tmp.transform.localScale *= EnemyData.Scale;
-		print("after_scale_" + tmp.transform.localScale);
-		currHealth = enemyData.StartHealth;
-
-		if (enemyData == null)
-			Debug.LogWarning("No enemyData in" + this.trans.name);
+		this.gameObject.tag = "Enemy";
 	}
 
-	private void Start()
+	public void Initiate(EnemyData data)
 	{
-		//save handling from start(all variables GameController determine in awake)
+		enemyData = data;
+		GameObject tmp = Instantiate(enemyData.Model, trans);
+		tmp.transform.localScale *= EnemyData.Scale;
+		currHealth = enemyData.StartHealth;
+
 		movepoints = GameController.Instance.MovePoints;
 		StartCoroutine(Movement());
 	}
@@ -43,6 +35,7 @@ public class EnemyController : MonoBehaviour
 	{
 		foreach (Transform currentPoint in movepoints)
 		{
+			trans.LookAt(currentPoint, Vector3.up);
 			while (Vector3.Distance(trans.position, currentPoint.position) > enemyData.SwitchDist)
 			{
 				Vector3 tmp = Vector3.MoveTowards(trans.position, currentPoint.position, enemyData.Speed * Time.deltaTime);
@@ -51,7 +44,6 @@ public class EnemyController : MonoBehaviour
 				yield return null;
 			}
 		}
-		//PlayerCastleGetDamageHere();
 		Destroy(trans.gameObject);
 	}
 

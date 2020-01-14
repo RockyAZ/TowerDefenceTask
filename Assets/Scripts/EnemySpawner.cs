@@ -20,14 +20,14 @@ public class EnemySpawner : MonoBehaviour
 
 	private void SpawnEnemy(EnemyData enemyData)
 	{
-		GameObject tmp = Instantiate(enemyPref, GameController.Instance.Enemies);
-		tmp.GetComponent<EnemyController>().EnemyData = enemyData;
+		GameObject tmp = Instantiate(enemyPref,spawnPos.position, Quaternion.identity, GameController.Instance.Enemies);
+		tmp.GetComponent<EnemyController>().Initiate(enemyData);
 	}
 
 	private void SpawnEnemyRandom()
 	{
-		GameObject tmp = Instantiate(enemyPref, spawnPos);
-		tmp.GetComponent<EnemyController>().EnemyData = enemyDataArr[Random.Range(0, enemyDataArr.Length - 1)];
+		GameObject tmp = Instantiate(enemyPref, spawnPos.position, Quaternion.identity, GameController.Instance.Enemies);
+		tmp.GetComponent<EnemyController>().Initiate(enemyDataArr[Random.Range(0, enemyDataArr.Length)]);
 	}
 
 	IEnumerator Spawning()

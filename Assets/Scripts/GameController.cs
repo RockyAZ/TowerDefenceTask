@@ -13,11 +13,11 @@ public class GameController : MonoBehaviour
 	private Transform enemies;
 	[SerializeField]
 	private Transform castle;
-	[SerializeField]
-	private TextMeshProUGUI goldText;
 
 	[SerializeField]
 	private int gold = 500;
+
+	private UIController ui;
 
 	public Transform MovePoints { get => movePoints; }
 	public Transform Enemies { get => enemies; }
@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
 	{
 		if (Instance == null)
 			Instance = this;
+		ui = this.gameObject.GetComponent<UIController>();
 	}
 
 	public bool ChangeGold(int value)//+value to plus -value to take away
@@ -34,7 +35,7 @@ public class GameController : MonoBehaviour
 		gold += value;
 		if (gold < 0)
 			return false;
-		goldText.text = gold.ToString();
+		ui.SetGold(gold);
 		return true;
 	}
 
@@ -45,6 +46,6 @@ public class GameController : MonoBehaviour
 
 	public void GameOver()
 	{
-		print("GAME OVER");
+		Debug.LogError("GAME OVER");
 	}
 }

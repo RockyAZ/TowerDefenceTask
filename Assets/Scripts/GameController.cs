@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
 	[SerializeField]
 	private Transform castle;
 	[SerializeField]
-	private TextMeshPro goldText;
+	private TextMeshProUGUI goldText;
 
 	[SerializeField]
 	private int gold = 500;
@@ -41,5 +41,10 @@ public class GameController : MonoBehaviour
 	public void PrintShit()
 	{
 		print("shit");
+	}
+
+	public void GameOver()
+	{
+		print("GAME OVER");
 	}
 }

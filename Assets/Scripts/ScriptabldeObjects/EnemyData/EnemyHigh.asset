@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e16796b5179d7bc478f917dd7882792b, type: 3}
   m_Name: EnemyHigh
   m_EditorClassIdentifier: 
+  type: EnemyHigh
   startHealth: 20
   speed: 5
   damage: 10
-  model: {fileID: -927199367670048503, guid: 6999b6f17f4399948a02b22d8c20c353, type: 3}
-  scale: 1
+  model: {fileID: 5124596047809653568, guid: a08870aa4fc77114c8257ebc449900b9, type: 3}
+  scale: 3
   switchDist: 1

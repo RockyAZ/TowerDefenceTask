@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-	[SerializeField]
+	//[SerializeField]
 	private EnemyData enemyData;
 
 	private Transform trans;
 	private Transform movepoints;
 	private int currHealth;
 
-	public EnemyData EnemyData { set => enemyData = value; }
-
+	public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
 
 	// Start is called before the first frame update
 	void Awake()
@@ -20,12 +19,23 @@ public class EnemyController : MonoBehaviour
 		print("ss: " + enemyData.StartHealth);
 
 		trans = this.transform;
-		Instantiate(enemyData.Model, trans);
-		movepoints = GameController.Instance.MovePoints;
+
+		GameObject tmp = Instantiate(enemyData.Model, trans);
+		print("type_" + EnemyData.Type);
+		print("scale_" + EnemyData.Scale);
+		print("before_scale_" + tmp.transform.localScale);
+		tmp.transform.localScale *= EnemyData.Scale;
+		print("after_scale_" + tmp.transform.localScale);
 		currHealth = enemyData.StartHealth;
 
 		if (enemyData == null)
 			Debug.LogWarning("No enemyData in" + this.trans.name);
+	}
+
+	private void Start()
+	{
+		//save handling from start(all variables GameController determine in awake)
+		movepoints = GameController.Instance.MovePoints;
 		StartCoroutine(Movement());
 	}
 

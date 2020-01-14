@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class TowerPointController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	private GameObject child;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	public void AddChild(TowerData towerData)
+	{
+		child = Instantiate(GameController.Instance.TowerPref, this.transform);
+		child.GetComponent<TowerController>().Initiate(towerData);
+	}
+
+	public void DeleteChild()
+	{
+		Destroy(child);
+	}
+	public int GetChildPrice()
+	{
+		return child.GetComponent<TowerController>().TowerData.Price;
+	}
+	public bool HaveChild()
+	{
+		if (child == null)
+			return false;
+		return true;
+	}
 }

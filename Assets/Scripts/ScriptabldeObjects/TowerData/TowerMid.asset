@@ -16,5 +16,5 @@ MonoBehaviour:
   price: 15
   range: 12
   interval: 0.2
-  damage: 1
-  model: {fileID: 0}
+  damage: 2
+  model: {fileID: 6017884572386173272, guid: 078fe9a1976c4584d83d21c93b278cf4, type: 3}

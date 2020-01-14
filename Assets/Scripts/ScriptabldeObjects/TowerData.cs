@@ -14,7 +14,7 @@ public class TowerData : ScriptableObject
 	[SerializeField]
 	private float interval;
 	[SerializeField]
-	private float damage;
+	private int damage;
 	[SerializeField]
 	private GameObject model;
 
@@ -22,6 +22,6 @@ public class TowerData : ScriptableObject
 	public int Price { get => price; }
 	public float Range { get => range; }
 	public float Interval { get => interval; }
-	public float Damage { get => damage; }
+	public int Damage { get => damage; }
 	public GameObject Model { get => model; }
 }

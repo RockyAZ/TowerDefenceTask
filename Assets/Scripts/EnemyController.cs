@@ -56,6 +56,7 @@ public class EnemyController : MonoBehaviour
 
 	private void Death()
 	{
+		GameController.Instance.AddRandomGold();
 		Destroy(this.gameObject);
 	}
 }

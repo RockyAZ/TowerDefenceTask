@@ -78,6 +78,12 @@ SubShader {
 	Blend One OneMinusSrcAlpha
 	ColorMask [_ColorMask]
 
+	Cull Off
+	Lighting Off
+	ZWrite Off
+	ZTest Off
+
+
 	Pass {
 		CGPROGRAM
 		#pragma vertex VertShader

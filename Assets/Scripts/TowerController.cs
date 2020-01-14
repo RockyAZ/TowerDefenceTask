@@ -10,6 +10,8 @@ public class TowerController : MonoBehaviour
 	private Transform trans;
 	private LineRenderer line;
 
+	public TowerData TowerData { get => towerData; }
+
 	// Start is called before the first frame update
 	void Start()
 	{
@@ -17,6 +19,11 @@ public class TowerController : MonoBehaviour
 		line = this.GetComponent<LineRenderer>();
 		Instantiate(towerData.Model, trans);
 		StartCoroutine(Attack());
+	}
+
+	public void Initiate(TowerData data)
+	{
+		this.towerData = data;
 	}
 
 	IEnumerator Attack()
@@ -48,7 +55,7 @@ public class TowerController : MonoBehaviour
 			{
 				Transform enemy = inRange[id];
 				trans.LookAt(enemy, Vector3.up);
-				enemy.GetComponent<EnemyController>().GetDamage(1);
+				enemy.GetComponent<EnemyController>().GetDamage(towerData.Damage);
 				StartCoroutine(DrawLine(enemy.position));
 				yield return new WaitForSeconds(towerData.Interval);
 			}

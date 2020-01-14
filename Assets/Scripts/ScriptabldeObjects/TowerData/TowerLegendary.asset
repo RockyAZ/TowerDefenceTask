@@ -17,4 +17,4 @@ MonoBehaviour:
   range: 10
   interval: 0.01
   damage: 5
-  model: {fileID: 0}
+  model: {fileID: 6017884572386173272, guid: 078fe9a1976c4584d83d21c93b278cf4, type: 3}

@@ -14,7 +14,7 @@ public class EnemyData : ScriptableObject
 	[SerializeField]
 	private int damage;
 	[SerializeField]
-	private GameObject model;
+	private Material material;
 	[SerializeField]
 	private float scale;
 	[SerializeField]
@@ -33,7 +33,7 @@ public class EnemyData : ScriptableObject
 	public int StartHealth { get => startHealth; }
 	public float Speed { get => speed; }
 	public int Damage { get => damage; }
-	public GameObject Model { get => model; }
+	public Material Material { get => material; }
 	public float Scale { get => scale; }
 	public float SwitchDist { get => switchDist; }
 	public int MinGivenGold { get => minGivenGold; }

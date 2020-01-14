@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//TODO: pulling enemies
 public class EnemySpawner : MonoBehaviour
 {
 	[SerializeField]

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyController : MonoBehaviour
 {
@@ -10,21 +11,24 @@ public class EnemyController : MonoBehaviour
 	private Transform trans;
 	private Transform movepoints;
 	private int currHealth;
+	[SerializeField]
+	private Image hpBar;
 
 	private bool isInit = false;//fix error when Destroy() called before Initiate()
+
+
 	public EnemyData EnemyData { get => enemyData; }
 
 	void Awake()
 	{
 		trans = this.transform;
-		this.gameObject.tag = "Enemy";
 	}
 
 	public void Initiate(EnemyData data)
 	{
 		enemyData = data;
 		GameObject tmp = Instantiate(enemyData.Model, trans);
-		tmp.transform.localScale *= EnemyData.Scale;
+		//tmp.transform.localScale *= EnemyData.Scale;
 		currHealth = enemyData.StartHealth;
 
 		movepoints = GameController.Instance.MovePoints;
@@ -54,6 +58,7 @@ public class EnemyController : MonoBehaviour
 		if (!isInit)
 			return;
 		currHealth -= dmg;
+		hpBar.fillAmount = currHealth / enemyData.StartHealth;
 		if (currHealth <= 0)
 			Death();
 	}

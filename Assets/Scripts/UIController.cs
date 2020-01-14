@@ -57,7 +57,8 @@ public class UIController : MonoBehaviour
 	public void HideTowerPointMenu()
 	{
 		towerPointMenu.SetActive(false);
-		currentPoint.SetMaterial(GameController.Instance.TowerPointMat);//stop outlining spawnPoint
+		if (currentPoint != null)
+			currentPoint.SetMaterial(GameController.Instance.TowerPointMat);//stop outlining spawnPoint
 		currentPoint = null;
 	}
 

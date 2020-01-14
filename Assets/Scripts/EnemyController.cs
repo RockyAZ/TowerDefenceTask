@@ -12,9 +12,8 @@ public class EnemyController : MonoBehaviour
 	private int currHealth;
 
 	private bool isInit = false;//fix error when Destroy() called before Initiate()
-	public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
+	public EnemyData EnemyData { get => enemyData; }
 
-	// Start is called before the first frame update
 	void Awake()
 	{
 		trans = this.transform;
@@ -46,6 +45,7 @@ public class EnemyController : MonoBehaviour
 				yield return null;
 			}
 		}
+		GameController.Instance.Castle.GetComponent<CastleController>().GetDamage(enemyData.Damage);//player castle get damage
 		Destroy(trans.gameObject);
 	}
 

@@ -8,13 +8,19 @@ public class TowerPointController : MonoBehaviour
 
 	public void AddChild(TowerData towerData)
 	{
+		if (child != null)
+		{
+			GameController.Instance.PlusGold(child.GetComponent<TowerController>().TowerData.Price);
+			Destroy(child);
+		}
 		child = Instantiate(GameController.Instance.TowerPref, this.transform);
 		child.GetComponent<TowerController>().Initiate(towerData);
 	}
 
 	public void DeleteChild()
 	{
-		Destroy(child);
+		if (child != null)
+			Destroy(child);
 	}
 
 	public int GetChildPrice()

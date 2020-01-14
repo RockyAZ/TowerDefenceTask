@@ -20,7 +20,6 @@ public class EnemySpawner : MonoBehaviour
 
 	private void SpawnEnemy(EnemyData enemyData)
 	{
-		enemyPref.GetComponent<EnemyController>().EnemyData = enemyData;
 		GameObject tmp = Instantiate(enemyPref, spawnPos.position, Quaternion.identity, GameController.Instance.Enemies);
 		tmp.GetComponent<EnemyController>().Initiate(enemyData);
 	}
@@ -57,8 +56,6 @@ public class EnemySpawner : MonoBehaviour
 	//start WaveS handling
 	public IEnumerator HandleWaves(WaveData[] waves)
 	{
-		//SpawnEnemy(EnemyData.EnemyLow);
-		//yield break;
 		for (int i = 0; i < waves.Length; i++)
 		{
 			StartCoroutine(DoWave(waves[i]));

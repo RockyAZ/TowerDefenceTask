@@ -11,7 +11,8 @@ public class EnemyController : MonoBehaviour
 	private Transform movepoints;
 	private int currHealth;
 
-	public EnemyData EnemyData { get => enemyData; }
+	private bool isInit = false;//fix error when Destroy() called before Initiate()
+	public EnemyData EnemyData { get => enemyData; set => enemyData = value; }
 
 	// Start is called before the first frame update
 	void Awake()
@@ -29,6 +30,7 @@ public class EnemyController : MonoBehaviour
 
 		movepoints = GameController.Instance.MovePoints;
 		StartCoroutine(Movement());
+		isInit = true;
 	}
 
 	IEnumerator Movement()
@@ -49,6 +51,8 @@ public class EnemyController : MonoBehaviour
 
 	public void GetDamage(int dmg)
 	{
+		if (!isInit)
+			return;
 		currHealth -= dmg;
 		if (currHealth <= 0)
 			Death();
@@ -56,7 +60,7 @@ public class EnemyController : MonoBehaviour
 
 	private void Death()
 	{
-		GameController.Instance.AddRandomGold();
+		GameController.Instance.PlusGold(Random.Range(enemyData.MinGivenGold, enemyData.MaxGivenGold));
 		Destroy(this.gameObject);
 	}
 }

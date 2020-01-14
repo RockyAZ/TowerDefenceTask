@@ -8,14 +8,19 @@ public class UIController : MonoBehaviour
 {
 	public static UIController Instance;
 	[SerializeField]
+	private Button startButton;
+	[SerializeField]
 	private TextMeshProUGUI goldText;
 
-	[SerializeField]
-	private GameObject towerPointMenu;
+	[Space]
 	[SerializeField]
 	private Button buyBtn;
 	[SerializeField]
 	private Button sellBtn;
+
+	[Space]
+	[SerializeField]
+	private GameObject towerPointMenu;
 	[SerializeField]
 	private TextMeshProUGUI towerPrice;
 	[SerializeField]
@@ -27,8 +32,9 @@ public class UIController : MonoBehaviour
 	{
 		if (Instance == null)
 			Instance = this;
-		buyBtn.onClick.AddListener(Buy);
-		sellBtn.onClick.AddListener(Sell);
+		startButton.onClick.AddListener(this.StartGame);
+		buyBtn.onClick.AddListener(this.Buy);
+		sellBtn.onClick.AddListener(this.Sell);
 	}
 
 	public void SetGold(int gold)
@@ -39,8 +45,10 @@ public class UIController : MonoBehaviour
 	public void ShowTowerPointMenu(TowerPointController towerPoint)
 	{
 		towerPointMenu.SetActive(true);
+		if (currentPoint != null)
+			currentPoint.SetMaterial(GameController.Instance.TowerPointMat);//stop outlining spawnPoint
 		currentPoint = towerPoint;
-		currentPoint.SetMateriel(GameController.Instance.TowerPointOutlineMat);
+		currentPoint.SetMaterial(GameController.Instance.TowerPointOutlineMat);//start outlining spawnPoint
 		if (towerPoint.HaveChild())
 			towerPrice.text = towerPoint.GetChildPrice().ToString();
 		else
@@ -49,16 +57,14 @@ public class UIController : MonoBehaviour
 	public void HideTowerPointMenu()
 	{
 		towerPointMenu.SetActive(false);
-		currentPoint.SetMateriel(GameController.Instance.TowerPointMat);
+		currentPoint.SetMaterial(GameController.Instance.TowerPointMat);//stop outlining spawnPoint
 		currentPoint = null;
 	}
 
-	public void Buy()
+	private void Buy()
 	{
-		print("buy");
 		if (currentPoint != null)
 		{
-			print("buy_inside");
 			foreach (TowerData tmp in GameController.Instance.TowerDatas)
 			{
 				string dropDownValue = towersDropDown.options[towersDropDown.value].text;
@@ -70,12 +76,18 @@ public class UIController : MonoBehaviour
 			}
 		}
 	}
-	public void Sell()
+	private void Sell()
 	{
 		if (currentPoint != null)
 		{
 			GameController.Instance.PlusGold(currentPoint.GetChildPrice());
 			currentPoint.DeleteChild();
 		}
+	}
+
+	private void StartGame()
+	{
+		startButton.gameObject.SetActive(false);
+		GameController.Instance.StartWaves();
 	}
 }

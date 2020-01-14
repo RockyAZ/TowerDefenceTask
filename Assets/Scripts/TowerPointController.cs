@@ -16,10 +16,12 @@ public class TowerPointController : MonoBehaviour
 	{
 		Destroy(child);
 	}
+
 	public int GetChildPrice()
 	{
 		return child.GetComponent<TowerController>().TowerData.Price;
 	}
+
 	public bool HaveChild()
 	{
 		if (child == null)
@@ -27,7 +29,7 @@ public class TowerPointController : MonoBehaviour
 		return true;
 	}
 
-	public void SetMateriel(Material mat)
+	public void SetMaterial(Material mat)
 	{
 		this.gameObject.GetComponent<MeshRenderer>().material = mat;
 	}

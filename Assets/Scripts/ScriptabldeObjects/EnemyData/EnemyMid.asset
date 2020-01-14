@@ -19,3 +19,5 @@ MonoBehaviour:
   model: {fileID: 5124596047809653568, guid: a08870aa4fc77114c8257ebc449900b9, type: 3}
   scale: 2
   switchDist: 1
+  minGivenGold: 10
+  maxGivenGold: 15

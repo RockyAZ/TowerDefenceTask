@@ -21,17 +21,17 @@ public class GameController : MonoBehaviour
 	[Space]
 	[SerializeField]
 	private int gold = 500;
-	[SerializeField]
-	private int minGivenGold = 10;
-	[SerializeField]
-	private int maxGivenGold = 50;
 	[Space]
 	[SerializeField]
 	private Material towerPointMat;
 	[SerializeField]
 	private Material towerPointOutlineMat;
+	[Space]
+	[SerializeField]
+	private WaveData[] waveArr;
 
 
+	private EnemySpawner enemySpawner;
 	private UIController ui;
 
 	public Transform MovePoints { get => movePoints; }
@@ -47,6 +47,9 @@ public class GameController : MonoBehaviour
 	{
 		if (Instance == null)
 			Instance = this;
+
+		enemySpawner = this.gameObject.GetComponent<EnemySpawner>();
+
 		ui = this.gameObject.GetComponent<UIController>();
 		ui.SetGold(gold);
 	}
@@ -58,11 +61,6 @@ public class GameController : MonoBehaviour
 			return false;
 		ui.SetGold(gold);
 		return true;
-	}
-
-	public void AddRandomGold()
-	{
-		PlusGold(Random.Range(minGivenGold, maxGivenGold));
 	}
 
 	public bool MinusGold(int value)
@@ -82,5 +80,10 @@ public class GameController : MonoBehaviour
 	public void GameOver()
 	{
 		Debug.LogError("GAME OVER");
+	}
+
+	public void StartWaves()
+	{
+		StartCoroutine(enemySpawner.HandleWaves(this.waveArr));
 	}
 }

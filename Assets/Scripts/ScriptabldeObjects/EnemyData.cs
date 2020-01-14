@@ -19,6 +19,15 @@ public class EnemyData : ScriptableObject
 	private float scale;
 	[SerializeField]
 	private float switchDist;
+	[SerializeField]
+	private int minGivenGold;
+	[SerializeField]
+	private int maxGivenGold;
+
+	public static string EnemyLow = "EnemyLow";
+	public static string EnemyMid = "EnemyMid";
+	public static string EnemyHigh = "EnemyHigh";
+
 
 	public string Type { get => type; }
 	public int StartHealth { get => startHealth; }
@@ -27,4 +36,6 @@ public class EnemyData : ScriptableObject
 	public GameObject Model { get => model; }
 	public float Scale { get => scale; }
 	public float SwitchDist { get => switchDist; }
+	public int MinGivenGold { get => minGivenGold; }
+	public int MaxGivenGold { get => maxGivenGold; }
 }

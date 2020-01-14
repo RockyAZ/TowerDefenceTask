@@ -215,7 +215,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0d69e11876c3ac34eb7570562edf247c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -809,6 +809,9 @@ MonoBehaviour:
   gold: 500
   minGivenGold: 10
   maxGivenGold: 50
+  towerPointMat: {fileID: 2100000, guid: 0d69e11876c3ac34eb7570562edf247c, type: 2}
+  towerPointOutlineMat: {fileID: 2100000, guid: d78f3cb562e86d8408b5836221afcfe5,
+    type: 2}
 --- !u!114 &228559567
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1823,7 +1826,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0d69e11876c3ac34eb7570562edf247c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3109,6 +3112,7 @@ GameObject:
   - component: {fileID: 1287889745}
   - component: {fileID: 1287889744}
   - component: {fileID: 1287889743}
+  - component: {fileID: 1287889746}
   m_Layer: 8
   m_Name: BuildTowerPoint (1)
   m_TagString: Untagged
@@ -3190,6 +3194,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1287889741}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1287889746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287889741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a7d6ff11683904baebbf3140ed9d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1296004216
 GameObject:
   m_ObjectHideFlags: 0
@@ -3398,7 +3414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1463879374
 RectTransform:
   m_ObjectHideFlags: 0

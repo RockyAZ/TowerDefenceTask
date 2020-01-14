@@ -25,6 +25,12 @@ public class GameController : MonoBehaviour
 	private int minGivenGold = 10;
 	[SerializeField]
 	private int maxGivenGold = 50;
+	[Space]
+	[SerializeField]
+	private Material towerPointMat;
+	[SerializeField]
+	private Material towerPointOutlineMat;
+
 
 	private UIController ui;
 
@@ -34,6 +40,8 @@ public class GameController : MonoBehaviour
 	public GameObject TowerPref { get => towerPref; }
 	public TowerData[] TowerDatas { get => towerDatas; }
 	public int Gold { get => gold; }
+	public Material TowerPointMat { get => towerPointMat; }
+	public Material TowerPointOutlineMat { get => towerPointOutlineMat; }
 
 	private void Awake()
 	{

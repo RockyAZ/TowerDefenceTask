@@ -23,11 +23,7 @@ public class TouchController : MonoBehaviour
 		RaycastHit hit;
 		int layer = 1 << LayerMask.NameToLayer("TowerPoint");
 		if(Physics.Raycast(ray, out hit, Mathf.Infinity, layer))
-		{
-			print(hit.transform.name);
-
 			UIController.Instance.ShowTowerPointMenu(hit.transform.GetComponent<TowerPointController>());
-		}
 		else
 			UIController.Instance.HideTowerPointMenu();
 	}

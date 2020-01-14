@@ -40,6 +40,7 @@ public class UIController : MonoBehaviour
 	{
 		towerPointMenu.SetActive(true);
 		currentPoint = towerPoint;
+		currentPoint.SetMateriel(GameController.Instance.TowerPointOutlineMat);
 		if (towerPoint.HaveChild())
 			towerPrice.text = towerPoint.GetChildPrice().ToString();
 		else
@@ -48,6 +49,7 @@ public class UIController : MonoBehaviour
 	public void HideTowerPointMenu()
 	{
 		towerPointMenu.SetActive(false);
+		currentPoint.SetMateriel(GameController.Instance.TowerPointMat);
 		currentPoint = null;
 	}
 

@@ -26,4 +26,9 @@ public class TowerPointController : MonoBehaviour
 			return false;
 		return true;
 	}
+
+	public void SetMateriel(Material mat)
+	{
+		this.gameObject.GetComponent<MeshRenderer>().material = mat;
+	}
 }

@@ -14,9 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: EnemyMid
   startHealth: 15
-  speed: 5
+  speed: 10
   damage: 6
-  model: {fileID: 5124596047809653568, guid: a08870aa4fc77114c8257ebc449900b9, type: 3}
   material: {fileID: 2100000, guid: ef9923311924c7e4daf5c00a9a827d5c, type: 2}
   scale: 2
   switchDist: 1

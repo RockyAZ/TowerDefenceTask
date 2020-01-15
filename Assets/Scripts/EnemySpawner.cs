@@ -40,8 +40,7 @@ public class EnemySpawner : MonoBehaviour
 
 	private void SpawnEnemyRandom()
 	{
-		GameObject tmp = Instantiate(enemyPref, spawnPos.position, Quaternion.identity, GameController.Instance.Enemies);
-		tmp.GetComponent<EnemyController>().Initiate(enemyDataArr[Random.Range(0, enemyDataArr.Length)]);
+		SpawnEnemy(enemyDataArr[Random.Range(0, enemyDataArr.Length)]);
 	}
 
 	IEnumerator InfSpawning()

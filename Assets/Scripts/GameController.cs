@@ -32,7 +32,6 @@ public class GameController : MonoBehaviour
 	private WaveData[] waveArr;
 	private int wavesCounter = 0;
 
-
 	private EnemySpawner enemySpawner;
 	private UIController ui;
 

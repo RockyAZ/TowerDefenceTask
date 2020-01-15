@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
 	public static UIController Instance;
 	[SerializeField]
 	private Button startButton;
+	[SerializeField]
+	private Button reloadButton;
 	[SerializeField]
 	private TextMeshProUGUI goldText;
 	[SerializeField]
@@ -19,6 +22,8 @@ public class UIController : MonoBehaviour
 	private Button buyBtn;
 	[SerializeField]
 	private Button sellBtn;
+	[SerializeField]
+	private TextMeshProUGUI priceToBuy;
 
 	[Space]
 	[SerializeField]
@@ -37,6 +42,7 @@ public class UIController : MonoBehaviour
 		if (Instance == null)
 			Instance = this;
 		startButton.onClick.AddListener(this.StartGame);
+		reloadButton.onClick.AddListener(this.ReloadGame);
 		buyBtn.onClick.AddListener(this.Buy);
 		sellBtn.onClick.AddListener(this.Sell);
 	}
@@ -60,7 +66,7 @@ public class UIController : MonoBehaviour
 		}
 		else
 		{
-			towerName.text = "NoTowerHere";
+			towerName.text = "NoTowerHere";	
 			towerPrice.text = "0";
 		}
 	}
@@ -83,6 +89,8 @@ public class UIController : MonoBehaviour
 				{
 					GameController.Instance.MinusGold(tmp.Price);
 					currentPoint.AddChild(tmp);
+					towerPrice.text = currentPoint.GetChildPrice().ToString();
+					towerName.text = "TowerType: " + currentPoint.GetChildType();
 				}
 			}
 		}
@@ -105,5 +113,21 @@ public class UIController : MonoBehaviour
 	public void SetWaveText(int was, int all)
 	{
 		waves.text = "Wave: " + was.ToString() + "|" + all.ToString();
+	}
+
+	public void ChangeToBuyValue()
+	{
+		foreach (TowerData tmp in GameController.Instance.TowerDatas)
+		{
+			string dropDownValue = towersDropDown.options[towersDropDown.value].text;
+			if (tmp.Type == dropDownValue && tmp.Price <= GameController.Instance.Gold)
+			{
+				priceToBuy.text = tmp.Price.ToString();
+			}
+		}
+	}
+	public void ReloadGame()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 }

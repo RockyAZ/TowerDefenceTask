@@ -26,6 +26,8 @@ public class UIController : MonoBehaviour
 	[SerializeField]
 	private TextMeshProUGUI towerPrice;
 	[SerializeField]
+	private TextMeshProUGUI towerName;
+	[SerializeField]
 	private TMP_Dropdown towersDropDown;
 
 	private TowerPointController currentPoint;//current tower spawn point
@@ -52,9 +54,15 @@ public class UIController : MonoBehaviour
 		currentPoint = towerPoint;
 		currentPoint.SetMaterial(GameController.Instance.TowerPointOutlineMat);//start outlining spawnPoint
 		if (towerPoint.HaveChild())
+		{
 			towerPrice.text = towerPoint.GetChildPrice().ToString();
+			towerName.text = "TowerType: " + towerPoint.GetChildType();
+		}
 		else
+		{
+			towerName.text = "NoTowerHere";
 			towerPrice.text = "0";
+		}
 	}
 	public void HideTowerPointMenu()
 	{

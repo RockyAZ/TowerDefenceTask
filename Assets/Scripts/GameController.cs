@@ -7,7 +7,6 @@ public class GameController : MonoBehaviour
 {
 	public static GameController Instance;
 
-	public TextMeshProUGUI del;
 	[Space]
 	[SerializeField]
 	private Transform movePoints;
@@ -45,11 +44,6 @@ public class GameController : MonoBehaviour
 	public int Gold { get => gold; }
 	public Material TowerPointMat { get => towerPointMat; }
 	public Material TowerPointOutlineMat { get => towerPointOutlineMat; }
-
-	public void PrintShit(string str)
-	{
-		del.text = str;
-	}
 
 	private void Awake()
 	{

@@ -27,7 +27,11 @@ public class TowerPointController : MonoBehaviour
 	{
 		return child.GetComponent<TowerController>().TowerData.Price;
 	}
+	public string GetChildType()
+	{
+		return child.GetComponent<TowerController>().TowerData.Type;
 
+	}
 	public bool HaveChild()
 	{
 		if (child == null)

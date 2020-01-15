@@ -11,23 +11,14 @@ public class TouchController : MonoBehaviour
 
 #if UNITY_EDITOR
 		if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())//2nd part - check if UI hitted
-		{
-			GameController.Instance.PrintShit("TRUE");
 			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-		}
 		else
 			return;
 #else
 		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
-		{
-			GameController.Instance.PrintShit("TRUE");
 			ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
-		}
 		else
-		{
-			GameController.Instance.PrintShit("FALSE");
 			return;
-		}
 #endif
 		RaycastHit hit;
 		int layer = 1 << LayerMask.NameToLayer("TowerPoint");

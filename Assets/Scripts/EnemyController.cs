@@ -27,7 +27,8 @@ public class EnemyController : MonoBehaviour
 	public void Initiate(EnemyData data)
 	{
 		enemyData = data;
-		GameObject tmp = Instantiate(enemyData.Model, trans);
+		this.gameObject.GetComponentInChildren<MeshRenderer>().material = data.Material;
+		//GameObject tmp = Instantiate(enemyData.Model, trans);
 		//tmp.transform.localScale *= EnemyData.Scale;
 		currHealth = enemyData.StartHealth;
 
@@ -58,7 +59,7 @@ public class EnemyController : MonoBehaviour
 		if (!isInit)
 			return;
 		currHealth -= dmg;
-		hpBar.fillAmount = currHealth / enemyData.StartHealth;
+		hpBar.fillAmount = (float)currHealth / (float)enemyData.StartHealth;
 		if (currHealth <= 0)
 			Death();
 	}

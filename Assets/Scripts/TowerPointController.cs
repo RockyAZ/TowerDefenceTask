@@ -37,6 +37,6 @@ public class TowerPointController : MonoBehaviour
 
 	public void SetMaterial(Material mat)
 	{
-		this.gameObject.GetComponent<MeshRenderer>().material = mat;
+		this.gameObject.GetComponentInChildren<MeshRenderer>().material = mat;
 	}
 }

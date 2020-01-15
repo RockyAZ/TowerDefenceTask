@@ -59,10 +59,12 @@ public class EnemySpawner : MonoBehaviour
 	{
 		for (int i = 0; i < waves.Length; i++)
 		{
-			StartCoroutine(DoWave(waves[i]));
+			GameController.Instance.AddWave();//add wave counter for UI
+			Coroutine tmpCor = StartCoroutine(DoWave(waves[i]));
 			yield return new WaitForSeconds(waves[i].Duration);
-			StopCoroutine("DoWave");
+			StopCoroutine(tmpCor);
 		}
+		StopAllCoroutines();
 	}
 	//start WavE handling
 	public IEnumerator HandleWave(WaveData waveData)

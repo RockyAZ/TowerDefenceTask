@@ -29,6 +29,7 @@ public class GameController : MonoBehaviour
 	[Space]
 	[SerializeField]
 	private WaveData[] waveArr;
+	private int wavesCounter = 0;
 
 
 	private EnemySpawner enemySpawner;
@@ -85,5 +86,11 @@ public class GameController : MonoBehaviour
 	public void StartWaves()
 	{
 		StartCoroutine(enemySpawner.HandleWaves(this.waveArr));
+	}
+
+	public void AddWave()
+	{
+		wavesCounter++;
+		ui.SetWaveText(wavesCounter, waveArr.Length);
 	}
 }

@@ -11,6 +11,8 @@ public class UIController : MonoBehaviour
 	private Button startButton;
 	[SerializeField]
 	private TextMeshProUGUI goldText;
+	[SerializeField]
+	private TextMeshProUGUI waves;
 
 	[Space]
 	[SerializeField]
@@ -90,5 +92,10 @@ public class UIController : MonoBehaviour
 	{
 		startButton.gameObject.SetActive(false);
 		GameController.Instance.StartWaves();
+	}
+
+	public void SetWaveText(int was, int all)
+	{
+		waves.text = "Wave: " + was.ToString() + "|" + all.ToString();
 	}
 }

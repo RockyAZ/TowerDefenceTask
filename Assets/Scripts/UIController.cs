@@ -9,9 +9,14 @@ public class UIController : MonoBehaviour
 {
 	public static UIController Instance;
 	[SerializeField]
+	private GameObject winScreen;
+	[SerializeField]
+	private GameObject loseScreen;
+	[SerializeField]
 	private Button startButton;
 	[SerializeField]
 	private Button reloadButton;
+	[Space]
 	[SerializeField]
 	private TextMeshProUGUI goldText;
 	[SerializeField]
@@ -47,6 +52,16 @@ public class UIController : MonoBehaviour
 		reloadButton.onClick.AddListener(this.ReloadGame);
 		buyBtn.onClick.AddListener(this.Buy);
 		sellBtn.onClick.AddListener(this.Sell);
+
+		//set start price
+		foreach (TowerData tmp in GameController.Instance.TowerDatas)
+		{
+			string dropDownValue = towersDropDown.options[towersDropDown.value].text;
+			if (tmp.Type == dropDownValue && tmp.Price <= GameController.Instance.Gold)
+			{
+				priceToBuy.text = tmp.Price.ToString();
+			}
+		}
 	}
 
 	public void SetGold(int gold)
@@ -99,7 +114,7 @@ public class UIController : MonoBehaviour
 	}
 	private void Sell()
 	{
-		if (currentPoint != null)
+		if (currentPoint != null && currentPoint.HaveChild())
 		{
 			GameController.Instance.PlusGold(currentPoint.GetChildPrice());
 			currentPoint.DeleteChild();
@@ -136,5 +151,15 @@ public class UIController : MonoBehaviour
 	public void SetHp(int max, int curr)
 	{
 		HpAmount.text = curr.ToString() + "|" + max.ToString();
+	}
+
+	public void WinScreenActive()
+	{
+		this.winScreen.SetActive(true);
+	}
+
+	public void LoseScreenActive()
+	{
+		this.loseScreen.SetActive(true);
 	}
 }

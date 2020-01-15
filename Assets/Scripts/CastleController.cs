@@ -7,6 +7,7 @@ public class CastleController : MonoBehaviour
 	[SerializeField]
 	private int startHealth = 100;
 	private int currentHealth;
+	private bool dead = false;
 
 	public int StartHealth { get => startHealth; }
 	public int CurrentHealth { get => currentHealth; }
@@ -19,6 +20,8 @@ public class CastleController : MonoBehaviour
 
 	public void GetDamage(int dmg)
 	{
+		if (dead)
+			return;
 		currentHealth -= dmg;
 		UIController.Instance.SetHp(startHealth, currentHealth);
 		if (currentHealth <= 0)
@@ -28,5 +31,6 @@ public class CastleController : MonoBehaviour
 	private void Death()
 	{
 		GameController.Instance.GameOver();
+		dead = true;
 	}
 }

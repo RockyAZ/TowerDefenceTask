@@ -28,8 +28,6 @@ public class EnemyController : MonoBehaviour
 	{
 		enemyData = data;
 		this.gameObject.GetComponentInChildren<MeshRenderer>().material = data.Material;
-		//GameObject tmp = Instantiate(enemyData.Model, trans);
-		//tmp.transform.localScale *= EnemyData.Scale;
 		currHealth = enemyData.StartHealth;
 
 		movepoints = GameController.Instance.MovePoints;

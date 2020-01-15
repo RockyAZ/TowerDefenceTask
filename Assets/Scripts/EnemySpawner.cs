@@ -64,7 +64,8 @@ public class EnemySpawner : MonoBehaviour
 			yield return new WaitForSeconds(waves[i].Duration);
 			StopCoroutine(tmpCor);
 		}
-		StopAllCoroutines();
+		StartCoroutine(GameController.Instance.CheckForWin());//waiting for all enemies death
+		//StopAllCoroutines();
 	}
 	//start WavE handling
 	public IEnumerator HandleWave(WaveData waveData)

@@ -54,6 +54,7 @@ public class GameController : MonoBehaviour
 
 		ui = this.gameObject.GetComponent<UIController>();
 		ui.SetGold(gold);
+		ui.SetWaveText(0, waveArr.Length);
 	}
 
 	public bool PlusGold(int value)
@@ -76,7 +77,8 @@ public class GameController : MonoBehaviour
 
 	public void GameOver()
 	{
-		Debug.LogError("GAME OVER");
+		ui.LoseScreenActive();
+		//Debug.LogError("GAME OVER");
 	}
 
 	public void StartWaves()
@@ -88,5 +90,18 @@ public class GameController : MonoBehaviour
 	{
 		wavesCounter++;
 		ui.SetWaveText(wavesCounter, waveArr.Length);
+	}
+
+	public IEnumerator CheckForWin()
+	{
+		while(true)
+		{
+			if (enemies.childCount <= 0)
+			{
+				ui.WinScreenActive();
+				yield break;
+			}
+			yield return null;
+		}
 	}
 }

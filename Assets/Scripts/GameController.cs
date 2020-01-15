@@ -7,6 +7,8 @@ public class GameController : MonoBehaviour
 {
 	public static GameController Instance;
 
+	public TextMeshProUGUI del;
+	[Space]
 	[SerializeField]
 	private Transform movePoints;
 	[SerializeField]
@@ -44,6 +46,11 @@ public class GameController : MonoBehaviour
 	public Material TowerPointMat { get => towerPointMat; }
 	public Material TowerPointOutlineMat { get => towerPointOutlineMat; }
 
+	public void PrintShit(string str)
+	{
+		del.text = str;
+	}
+
 	private void Awake()
 	{
 		if (Instance == null)
@@ -71,11 +78,6 @@ public class GameController : MonoBehaviour
 			return false;
 		ui.SetGold(gold);
 		return true;
-	}
-
-	public void PrintShit()
-	{
-		print("shit");
 	}
 
 	public void GameOver()

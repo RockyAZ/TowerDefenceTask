@@ -5,12 +5,23 @@ using UnityEngine;
 public class CastleController : MonoBehaviour
 {
 	[SerializeField]
-	private int health = 100;
+	private int startHealth = 100;
+	private int currentHealth;
+
+	public int StartHealth { get => startHealth; }
+	public int CurrentHealth { get => currentHealth; }
+
+	private void Start()
+	{
+		currentHealth = startHealth;
+		UIController.Instance.SetHp(startHealth, currentHealth);
+	}
 
 	public void GetDamage(int dmg)
 	{
-		health -= dmg;
-		if (health <= 0)
+		currentHealth -= dmg;
+		UIController.Instance.SetHp(startHealth, currentHealth);
+		if (currentHealth <= 0)
 			Death();
 	}
 

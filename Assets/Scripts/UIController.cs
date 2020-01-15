@@ -15,6 +15,8 @@ public class UIController : MonoBehaviour
 	[SerializeField]
 	private TextMeshProUGUI goldText;
 	[SerializeField]
+	private TextMeshProUGUI HpAmount;
+	[SerializeField]
 	private TextMeshProUGUI waves;
 
 	[Space]
@@ -129,5 +131,10 @@ public class UIController : MonoBehaviour
 	public void ReloadGame()
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	public void SetHp(int max, int curr)
+	{
+		HpAmount.text = curr.ToString() + "|" + max.ToString();
 	}
 }

@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class LookAtCam : MonoBehaviour
 {
-	private Transform trans;
-	private Camera cam;
-	// Start is called before the first frame update
-	void Start()
+	void Awake()
 	{
-		trans = this.transform;
-		cam = Camera.main;
-	}
+		Vector3 tmp = Camera.main.transform.position;
+		tmp.y = this.transform.position.y;
 
-	// Update is called once per frame
-	void Update()
-	{
-		trans.LookAt(cam.transform, Vector3.up);
+		//this.transform.LookAt(Vector3.right, Vector3.up);
+		this.transform.rotation = Quaternion.LookRotation(Vector3.left);
+		this.transform.rotation = Quaternion.LookRotation(this.transform.position - Camera.main.transform.position);
+		//this.transform.LookAt(Camera.main.transform, Vector3.up);
 	}
 }

@@ -1,10 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class TowerPointController : MonoBehaviour
 {
 	private GameObject child;
+	private TextMeshProUGUI currentTowerText;
+
+	private void Awake()
+	{
+		currentTowerText = this.transform.GetComponentInChildren<TextMeshProUGUI>();
+	}
 
 	public void AddChild(TowerData towerData)
 	{
@@ -15,12 +22,16 @@ public class TowerPointController : MonoBehaviour
 		}
 		child = Instantiate(GameController.Instance.TowerPref, this.transform);
 		child.GetComponent<TowerController>().Initiate(towerData);
+		currentTowerText.text = child.GetComponent<TowerController>().TowerData.Type;
 	}
 
 	public void DeleteChild()
 	{
 		if (child != null)
+		{
 			Destroy(child);
+			currentTowerText.text = "Empty";
+		}
 	}
 
 	public int GetChildPrice()

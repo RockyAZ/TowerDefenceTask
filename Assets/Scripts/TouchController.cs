@@ -18,7 +18,7 @@ public class TouchController : MonoBehaviour
 		else
 			return;
 #else
-		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+		if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
 		{
 			GameController.Instance.PrintShit("TRUE");
 			ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
